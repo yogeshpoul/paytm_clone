@@ -37,7 +37,7 @@ export const SendMoney=()=>{
                                 
                             }}type="Number" placeholder="Enter Amount" id="amount" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"></input>
                             <Button onClick={()=>{
-                                axios.post("https://vercel.com/yogeshpoulpatils-projects/paytm-clone/api/v1/account/transfer",{
+                                axios.post("https://paytm-clone-coral-two.vercel.app/api/v1/account/transfer",{
                                     amount,
                                     to:id
                                 },{

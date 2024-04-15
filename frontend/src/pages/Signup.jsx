@@ -40,7 +40,7 @@ export const Signup = () => {
                 }} label={"password"} placeholder={"IlovePriya"} />
                 <div className="pt-4">
                     <Button onClick={async() => {
-                        const response=await axios.post("https://vercel.com/yogeshpoulpatils-projects/paytm-clone/api/v1/user/signup", {
+                        const response=await axios.post("https://paytm-clone-coral-two.vercel.app/api/v1/user/signup", {
                             username,
                             firstName,
                             lastName,
