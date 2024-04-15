@@ -8,7 +8,7 @@ export const Users = () => {
     const [filter,setFilter]=useState("")
 
     useEffect(()=>{
-        axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`).then((response)=>{
+        axios.get(`https://vercel.com/yogeshpoulpatils-projects/paytm-clone/api/v1/user/bulk?filter=${filter}`).then((response)=>{
             setUsers(response.data.user)
         })
     },[filter])

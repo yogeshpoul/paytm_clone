@@ -14,7 +14,7 @@ export const Dashboard=()=>{
         const fetchBalance = async () => {
           try {
             const response = await axios.get(
-              "http://localhost:3000/api/v1/account/balance",
+              "https://vercel.com/yogeshpoulpatils-projects/paytm-clone/api/v1/account/balance",
               {
                 headers: {
                   Authorization: "Bearer " + localStorage.getItem("token"),
