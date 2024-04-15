@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { Button } from "../components/Button"
 import axios from "axios";
 import { useState } from "react";
@@ -10,6 +10,7 @@ export const SendMoney=()=>{
     
 
     const [amount,setAmount]=useState(0)
+    const navigate=useNavigate();
     
 
     return <div className="flex justify-center h-screen bg-gray-100">
@@ -23,6 +24,7 @@ export const SendMoney=()=>{
                         <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center">
                             <span className="text-2xl text-white">
                                 {name[0].toUpperCase()}
+                                
                             </span>
                         </div>
                         <h3 className="font-semibold text-2xl">{name}</h3>
@@ -41,6 +43,12 @@ export const SendMoney=()=>{
                                 },{
                                     headers:{
                                         Authorization:"Bearer "+localStorage.getItem("token")
+                                    }
+                                }).then(function(response){
+                                    console.log(response.data.message)
+                                    if(response.data.message=="Transfer successful"){
+                                        alert("transfer successful")
+                                        navigate("/dashboard")
                                     }
                                 })
                             }} label={"Initiate Transfer"}/>
