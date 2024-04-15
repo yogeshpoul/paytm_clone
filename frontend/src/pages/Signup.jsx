@@ -45,11 +45,14 @@ export const Signup = () => {
                             firstName,
                             lastName,
                             password
+                        }).then(function(response){
+                            console.log(response.data)
                         })
                         localStorage.setItem("token",response.data.token)
                     }} label={"Sign up"} />
                 </div>
-                <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/signin"} />
+                <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/"} />
+                {/* <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/signin"} /> */}
             </div>
         </div>
     </div>
