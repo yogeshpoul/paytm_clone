@@ -5,6 +5,7 @@ import { Heading } from "../components/Heading"
 import { InputBox } from "../components/InputBox"
 import SubHeading from "../components/SubHeading"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 
 export const Signup = () => {
@@ -12,6 +13,7 @@ export const Signup = () => {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate=useNavigate();
 
     return <div className="flex justify-center bg-gray-900 h-screen">
             {/* <div className="bg-white">
@@ -46,7 +48,12 @@ export const Signup = () => {
                             lastName,
                             password
                         }).then(function(response){
-                            console.log(response.data)
+                            if(response.data.message=="User created successfully"){
+                                navigate("/")
+                            }
+                            else{
+                                alert("you already have an account")
+                            }
                         })
                         localStorage.setItem("token",response.data.token)
                     }} label={"Sign up"} />
