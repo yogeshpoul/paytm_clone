@@ -52,7 +52,7 @@ export const Signup = () => {
                                 navigate("/")
                             }
                             else{
-                                alert("you already have an account")
+                                alert(response.data.message)
                             }
                         })
                         localStorage.setItem("token",response.data.token)

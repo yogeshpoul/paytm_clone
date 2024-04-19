@@ -30,6 +30,12 @@ export const Signin=()=>{
                             username,
                             password
                         })
+                        // console.log(response.data)
+                        // if(response.data.token){
+                        //     // alert("successful")
+                        // }else{
+                        //     alert("enter valid ")
+                        // }
                         localStorage.setItem("token",response.data.token);
                         navigate("/dashboard");
                     }} label={"Sign in"}/>

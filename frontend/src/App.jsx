@@ -4,7 +4,8 @@ import {Signin} from './pages/Signin'
 import {Dashboard} from './pages/Dashboard'
 import {SendMoney} from './pages/SendMoney'
 import Loader from './components/Loader'
-
+// const url="http://localhost:3000"
+// const url="https://paytm-clone-coral-two.vercel.app"
 function App() {
 // new comments added
   return (
