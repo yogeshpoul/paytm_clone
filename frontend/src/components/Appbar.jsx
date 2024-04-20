@@ -1,6 +1,6 @@
 export const Appbar = ({ name }) => {
     return <div>
-        <div className="shadow-lg shadow-cyan-300/50 h-14 flex justify-between rounded-md ">
+        <div className="shadow-lg shadow-yellow-300/50 h-14 flex justify-between rounded-md ">
             <div className="flex flex-row justify-center h-full ml-4 ">
                 <div className="mt-2">
                     <img src="./rupee-gold-coin-10889 (2).svg" alt="Rupee Gold Coin" className="h-10 w-10" />
