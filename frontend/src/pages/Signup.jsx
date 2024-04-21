@@ -13,7 +13,10 @@ export const Signup = () => {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordError,setPasswordError]=useState("Enter password")
+    const [isLoading,setIsLoading]=useState(false);
     const navigate=useNavigate();
+
 
     return <div className="flex justify-center bg-gray-900 h-screen">
             {/* <div className="bg-white">
@@ -39,9 +42,14 @@ export const Signup = () => {
                 }} label={"Email"} placeholder={"yogeshpoul9999@gmail.com"} />
                 <InputBox onChange={(e) => {
                     setPassword(e.target.value)
-                }} label={"password"} placeholder={"IlovePriya"} />
+                }} label={"password"} placeholder={passwordError} />
                 <div className="pt-4">
                     <Button onClick={async() => {
+                        if(password.length<6){
+                            // alert("enter password with 6 or more digits")
+                            setPasswordError("Enter correct password")
+                        }else{
+                        setIsLoading(true)
                         const response=await axios.post("https://paytm-clone-coral-two.vercel.app/api/v1/user/signup", {
                             username,
                             firstName,
@@ -50,13 +58,15 @@ export const Signup = () => {
                         }).then(function(response){
                             if(response.data.message=="User created successfully"){
                                 navigate("/")
+                                setIsLoading(false)
                             }
                             else{
                                 alert(response.data.message)
                             }
                         })
                         localStorage.setItem("token",response.data.token)
-                    }} label={"Sign up"} />
+                    }
+                    }} label={isLoading?"Loading...":"Sign up"} />
                 </div>
                 <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/"} />
                 {/* <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/signin"} /> */}
