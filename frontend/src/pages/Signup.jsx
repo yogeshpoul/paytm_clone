@@ -48,6 +48,7 @@ export const Signup = () => {
                         if(password.length<6){
                             // alert("enter password with 6 or more digits")
                             setPasswordError("Enter correct password")
+                            alert("Enter password 6 or more digits")
                         }else{
                         setIsLoading(true)
                         const response=await axios.post("https://paytm-clone-coral-two.vercel.app/api/v1/user/signup", {
