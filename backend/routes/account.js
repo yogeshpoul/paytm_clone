@@ -21,6 +21,22 @@ router.get("/balance", authMiddleware, async (req, res) => {
         username:user.username
     })
 });
+let notifications=[]
+
+router.get("/notifications",authMiddleware,async(req,res)=>{
+    const userId = req.userId;
+    
+    
+    // Filter notifications for the user
+    const userNotifications = notifications.filter(notification => notification.to === userId);
+    console.log(userNotifications)
+
+    // Clear notifications for the user
+    notifications = notifications.filter(notification => notification.to !== userId);
+
+    res.json(userNotifications);
+    notifications.filter
+})
 
 router.post("/transfer", authMiddleware, async (req, res) => {
     console.log(req.body)
@@ -54,8 +70,11 @@ router.post("/transfer", authMiddleware, async (req, res) => {
 
     // Commit the transaction
     await session.commitTransaction();
+    notifications.push({to,amount})
     res.json({
-        message: "Transfer successful"
+        message: "Transfer successful",
+        account,
+        notifications
     });
 });
 

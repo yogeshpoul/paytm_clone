@@ -30,6 +30,29 @@ export const Dashboard=()=>{
         fetchBalance();
       }, []);
 
+      const fetchNotifications = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/api/v1/account/notifications`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+          );
+          // setNotifications(data);
+          console.log(response.data)
+        } catch (error) {
+          console.error('Error fetching notifications:', error);
+        }
+      };
+    
+      // Fetch notifications initially and then poll every 5 seconds
+      useEffect(() => {
+        fetchNotifications();
+        const interval = setInterval(fetchNotifications, 5000);
+        return () => clearInterval(interval);
+      }, []);
+
     return <div>
         <Appbar name={name}/>
         <div className="m-8">
