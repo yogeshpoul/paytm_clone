@@ -32,7 +32,7 @@ export const Dashboard=()=>{
 
       const fetchNotifications = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/api/v1/account/notifications`,
+          const response = await axios.get(`https://paytm-clone-coral-two.vercel.app/api/v1/account/notifications`,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
