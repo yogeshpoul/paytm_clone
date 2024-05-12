@@ -21,7 +21,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
         username:user.username
     })
 });
-let notifications=[]
+let notifications=[{sample:"sample"}]
 
 router.get("/notifications",authMiddleware,async(req,res)=>{
     const userId = req.userId;
