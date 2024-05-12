@@ -32,7 +32,7 @@ router.get("/notifications",authMiddleware,async(req,res)=>{
     console.log(userNotifications)
 
     // Clear notifications for the user
-    notifications = notifications.filter(notification => notification.to !== userId);
+    // notifications = notifications.filter(notification => notification.to !== userId);
 
     res.json(userNotifications);
     notifications.filter
