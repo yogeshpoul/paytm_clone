@@ -45,7 +45,7 @@ export const Dashboard=()=>{
           );
           setNotifications(response.data);
           console.log(response.data)
-          toast.success(`Payment Received Rs ${response.data[0].amount} from `);
+          toast.success(`Payment Received Rs ${response.data[0].amount} from ${response.data[0].senderName}`);
         } catch (error) {
           console.error('Error fetching notifications:', error);
         }
