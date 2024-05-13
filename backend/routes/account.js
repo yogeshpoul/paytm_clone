@@ -32,14 +32,17 @@ router.get("/notifications",authMiddleware,async(req,res)=>{
     console.log(userNotifications)
 
     // Clear notifications for the user
-    // notifications = notifications.filter(notification => notification.to !== userId);
+    notifications = notifications.filter(notification => notification.to !== userId);
 
     res.json(userNotifications);
-    notifications.filter
+    // notifications.filter
 })
 
 router.post("/transfer", authMiddleware, async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
+    const sender=await User.findOne({_id:req.body.to});
+    // console.log(sender.firstName);
+
     const session = await mongoose.startSession();
 
     session.startTransaction();
@@ -47,6 +50,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
 
     // Fetch the accounts within the transaction
     const account = await Account.findOne({ userId: req.userId }).session(session);
+    
 
     if (!account || account.balance < amount) {
         await session.abortTransaction();
@@ -70,7 +74,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
 
     // Commit the transaction
     await session.commitTransaction();
-    notifications.push({to,amount})
+    notifications.push({to,amount,senderName:sender.firstName})
     res.json({
         message: "Transfer successful",
         account,

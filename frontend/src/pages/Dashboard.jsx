@@ -4,11 +4,14 @@ import { Appbar } from "../components/Appbar"
 import { Balance } from "../components/Balance"
 import { Users } from "../components/Users"
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Dashboard=()=>{
     const [balance,setBalance]=useState(null);
     const [name,setName]=useState('');
+    const [notifications,setNotifications]=useState('');
     
     useEffect(() => {
         const fetchBalance = async () => {
@@ -31,6 +34,7 @@ export const Dashboard=()=>{
       }, []);
 
       const fetchNotifications = async () => {
+        // console.log("reacthed")
         try {
           const response = await axios.get(`https://paytm-clone-coral-two.vercel.app/api/v1/account/notifications`,
           {
@@ -39,8 +43,9 @@ export const Dashboard=()=>{
             },
           }
           );
-          // setNotifications(data);
-          console.log(response.data)
+          setNotifications(response.data);
+          toast.success(`Payment Received Rs ${response.data[0].amount}`);
+          // console.log("tjhoois ")
         } catch (error) {
           console.error('Error fetching notifications:', error);
         }
@@ -49,6 +54,7 @@ export const Dashboard=()=>{
       // Fetch notifications initially and then poll every 5 seconds
       useEffect(() => {
         fetchNotifications();
+        
         const interval = setInterval(fetchNotifications, 5000);
         return () => clearInterval(interval);
       }, []);
@@ -59,5 +65,6 @@ export const Dashboard=()=>{
             <Balance value={balance}/>
             <Users/>
         </div>
+        <ToastContainer />
     </div>
 }
