@@ -40,7 +40,7 @@ router.get("/notifications",authMiddleware,async(req,res)=>{
 
 router.post("/transfer", authMiddleware, async (req, res) => {
     console.log(req.body);
-    const sender=await User.findOne({_id:req.body.to});
+    const sender=await User.findOne({_id:req.userId});
     // console.log(sender.firstName);
 
     const session = await mongoose.startSession();

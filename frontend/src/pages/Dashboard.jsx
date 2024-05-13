@@ -31,7 +31,7 @@ export const Dashboard=()=>{
           }
         };
         fetchBalance();
-      }, []);
+      }, [notifications]);
 
       const fetchNotifications = async () => {
         // console.log("reacthed")
@@ -44,8 +44,8 @@ export const Dashboard=()=>{
           }
           );
           setNotifications(response.data);
-          toast.success(`Payment Received Rs ${response.data[0].amount}`);
-          // console.log("tjhoois ")
+          console.log(response.data)
+          toast.success(`Payment Received Rs ${response.data[0].amount} from `);
         } catch (error) {
           console.error('Error fetching notifications:', error);
         }
